@@ -6,18 +6,40 @@ import Paper from '@material-ui/core/Paper';
 import Typography from '@material-ui/core/Typography';
 import styles from './styles';
 
+const counter = 'counter';
+
 class App extends React.Component {
     state = {
-        number: this.props.number
+        number : Number(localStorage.getItem(counter)) || 0
     }
 
-    inc = () => this.setState({ number: this.state.number + 1 })
-    inc5 = () => this.setState({ number: this.state.number + 5 })
+    inc = () => {
+        const number = this.state.number + 1;
+        this.setState({number : number});
+        localStorage.setItem(counter, number)
+    }
+    inc5 = () => {
+        const number = this.state.number + 5;
+        this.setState({number : number});
+        localStorage.setItem(counter, number)
+    }
 
-    dec = () => this.setState({ number: this.state.number - 1 })
-    dec5 = () => this.setState({ number: this.state.number - 5 })
+    dec = () => {
+        const number = this.state.number - 1;
+        this.setState({number : number});
+        localStorage.setItem(counter, number)
+    }
+    dec5 = () => {
+        const number = this.state.number - 5;
+        this.setState({number : number});
+        localStorage.setItem(counter, number)
+    }
 
-    reset = () => this.setState({ number: this.props.number})
+    reset = () => {
+        const number = 0;
+        this.setState({number : number});
+        localStorage.setItem(counter, number)
+    }
 
     render() {
         return (
@@ -27,9 +49,7 @@ class App extends React.Component {
                 <Typography
                     align="center"
                     variant="h4"
-                    style={{
-                        padding: '20px'
-                    }}
+                    style={styles.typography}
                 >
                     <p>Counter</p>
                     <p>{this.state.number}</p>
@@ -72,10 +92,6 @@ class App extends React.Component {
             </Paper>
         )
     }
-}
-
-App.defaultProps = {
-    number: 0
 }
 
 export default App;

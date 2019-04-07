@@ -6,6 +6,9 @@ const styles = {
     },
     button: {
         margin: '20px',
+    },
+    typography: {
+        padding: '20px'
     }
 }
 export default styles;
