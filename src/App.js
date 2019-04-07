@@ -13,30 +13,9 @@ class App extends React.Component {
         number : Number(localStorage.getItem(counter)) || 0
     }
 
-    inc = () => {
-        const number = this.state.number + 1;
-        this.setState({number : number});
-        localStorage.setItem(counter, number)
-    }
-    inc5 = () => {
-        const number = this.state.number + 5;
-        this.setState({number : number});
-        localStorage.setItem(counter, number)
-    }
-
-    dec = () => {
-        const number = this.state.number - 1;
-        this.setState({number : number});
-        localStorage.setItem(counter, number)
-    }
-    dec5 = () => {
-        const number = this.state.number - 5;
-        this.setState({number : number});
-        localStorage.setItem(counter, number)
-    }
-
-    reset = () => {
-        const number = 0;
+    modifyNumber = (change) => {
+        let number;
+        (change !== 0) ? number = (this.state.number + change) : number = 0;
         this.setState({number : number});
         localStorage.setItem(counter, number)
     }
@@ -56,34 +35,34 @@ class App extends React.Component {
                     <Fab
                         style={styles.button}
                         color="primary"
-                        onClick={this.inc}
+                        onClick={() => this.modifyNumber(1)}
                     >
                         <AddIcon />
                     </Fab>
                     <Fab
                         style={styles.button}
                         color="secondary"
-                        onClick={this.dec}
+                        onClick={() => this.modifyNumber(-1)}
                     >
                         <RemoveIcon />
                     </Fab>
                     <Fab
                         style={styles.button}
                         color="primary"
-                        onClick={this.inc5}
+                        onClick={() => this.modifyNumber(5)}
                     >
                         +5
                     </Fab>
                     <Fab
                         style={styles.button}
                         color="secondary"
-                        onClick={this.dec5}
+                        onClick={() => this.modifyNumber(-5)}
                     >
                         -5
                     </Fab>
                     <Fab
                         style={styles.button}
-                        onClick={this.reset}
+                        onClick={() => this.modifyNumber(0)}
                         variant="extended"
                     >
                         Reset
