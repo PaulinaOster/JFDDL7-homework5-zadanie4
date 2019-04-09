@@ -6,6 +6,7 @@ const styles = {
     },
     button: {
         margin: '20px',
+        fontSize: '20px'
     },
     typography: {
         padding: '20px'

@@ -7,20 +7,19 @@ import Paper from '@material-ui/core/Paper';
 import Typography from '@material-ui/core/Typography';
 import styles from './styles';
 
-const counter = 'counter';
+const COUNTER = 'counter';
 
 class Counter extends React.Component {
 
     state = {
-        number: Number(localStorage.getItem(counter)) || 0
+        number: Number(localStorage.getItem(COUNTER)) || 0
     }
 
-    modifyNumber = (change) => {
-        let number;
-        (change !== 0) ? number = (this.state.number + change) : number = 0;
-        this.setState({ number: number });
-        localStorage.setItem(counter, number)
-    }
+    modifyNumber = change =>
+        this.setState(
+            { number: change === 0 ? 0 : this.state.number + change },
+            () => localStorage.setItem(COUNTER, this.state.number)
+        );
 
     render() {
         return (
